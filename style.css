@@ -1,0 +1,141 @@
+:root{
+  --bg:#0f1720;
+  --panel:#0b1220;
+  --muted:#94a3b8;
+  --accent:#1db954;
+  --glass: rgba(255,255,255,0.04);
+  --card:#0e1724;
+  --radius:14px;
+  --gap:16px;
+  --max-width:1100px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Reset-ish */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#071020 0%, #071826 100%);
+  color:#e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+/* Layout */
+.app{
+  width:100%;
+  max-width:var(--max-width);
+  display:grid;
+  grid-template-columns: 300px 1fr;
+  gap:24px;
+  align-items:stretch;
+}
+
+/* Sidebar */
+.sidebar{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  min-height:480px;
+  box-shadow:0 6px 30px rgba(2,6,23,0.6);
+}
+.sidebar-header h1{margin:0;font-size:20px;letter-spacing:0.6px}
+.sub{margin:0;color:var(--muted);font-size:13px}
+
+/* Search */
+.search{
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.03);
+  background:transparent;
+  color:inherit;
+  outline:none;
+  margin-bottom:8px;
+}
+
+/* Song list */
+.song-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  overflow:auto;
+}
+.song-list li{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:8px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:background .14s, transform .12s;
+}
+.song-list li:hover{background:rgba(255,255,255,0.02)}
+.song-list li.active{background:linear-gradient(90deg, rgba(29,185,84,0.12), rgba(255,255,255,0.02)); transform:translateX(2px)}
+.song-thumb{width:46px;height:46px;border-radius:8px;flex:0 0 46px;object-fit:cover}
+.song-meta{display:flex;flex-direction:column;min-width:0}
+.song-title{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.song-artist{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* Player panel */
+.player{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:var(--radius);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  box-shadow:0 10px 40px rgba(1,6,18,0.6);
+  min-height:480px;
+}
+
+/* Now playing */
+.now-playing{display:flex;gap:18px;align-items:center}
+.cover-wrap{width:140px;height:140px;flex:0 0 140px;border-radius:12px;overflow:hidden}
+.cover{width:100%;height:100%;object-fit:cover;display:block}
+.track-meta h2{margin:0;font-size:20px}
+.track-meta .artist{margin:6px 0 0;color:var(--muted)}
+
+/* Controls */
+.controls{display:flex;flex-direction:column;gap:12px}
+.control-top{display:flex;align-items:center;justify-content:center;gap:18px}
+.icon-btn, .big-btn, .play-btn{
+  background:transparent;border:none;color:inherit;cursor:pointer;padding:10px;border-radius:10px;font-size:18px;
+}
+.play-btn{
+  width:72px;height:72px;border-radius:50%;font-size:26px;
+  background:linear-gradient(180deg, rgba(29,185,84,0.18), rgba(29,185,84,0.08));
+  box-shadow:0 6px 18px rgba(29,185,84,0.08);
+}
+.icon-btn[aria-pressed="true"], .big-btn:hover, .icon-btn:hover{color:var(--accent)}
+.big-btn{font-size:20px}
+
+/* Progress */
+.progress-wrap{display:flex;align-items:center;gap:12px}
+.time{font-size:12px;color:var(--muted);min-width:40px;text-align:center}
+input[type=range]{-webkit-appearance:none;background:transparent;height:28px;flex:1}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:rgba(255,255,255,0.06)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;margin-top:-8px;width:16px;height:16px;border-radius:50%;background:var(--accent);box-shadow:0 2px 6px rgba(0,0,0,0.6)}
+
+/* Volume */
+.volume-wrap{display:flex;align-items:center;gap:10px;padding-top:6px}
+.hint{font-size:12px;color:var(--muted);margin:0}
+
+/* Footer small */
+.sidebar-footer{margin-top:auto;text-align:center;color:var(--muted);font-size:12px}
+
+/* Responsive */
+@media (max-width:900px){
+  .app{grid-template-columns:1fr; padding:8px}
+  .sidebar{order:2}
+  .player{order:1}
+  .cover-wrap{width:110px;height:110px}
+}
